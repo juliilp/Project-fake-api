@@ -7,7 +7,7 @@ const datosDefault = async (req, res) => {
     const hashPassword = await bcrypt.hash("1234", 10);
     await UserModel.create({
       name: "julian",
-      email: "julianlopez43013@gmail.com",
+      email: "testadmin@gmail.com",
       password: hashPassword,
       isAdmin: true,
     });

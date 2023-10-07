@@ -4,6 +4,27 @@ const createAcessToken = require("../utils/createAcessToken");
 const bcrypt = require("bcrypt");
 const ProductsModel = require("../models/Products.model");
 const ComprasModel = require("../models/Compras.model");
+
+const allUser = async (req, res) => {
+  const { limit, page } = req.query;
+
+  const options = {
+    page: parseInt(page, 10) || 1,
+    limit: parseInt(limit, 10) || 10,
+  };
+  try {
+    const allUser = await userModel.paginate({}, options);
+    res.status(200).json({
+      cantidad: allUser.totalDocs,
+      productos: allUser.docs,
+      totalPages: allUser.totalPages,
+      currentPage: allUser.page,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const editUser = async (req, res) => {
   const { id } = req.params;
   const { email, password, nombre } = req.body;
@@ -26,42 +47,40 @@ const editUser = async (req, res) => {
   }
 };
 
-const allUser = async (req, res) => {
-  const { limit, page } = req.query;
-
-  const options = {
-    page: parseInt(page, 10) || 1,
-    limit: parseInt(limit, 10) || 10,
-  };
+const registerUser = async (req, res) => {
   try {
-    const allUser = await userModel.paginate({}, options);
-    res.status(200).json({
-      cantidad: allUser.totalDocs,
-      productos: allUser.docs,
-      totalPages: allUser.totalPages,
-      currentPage: allUser.page,
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+    const { nombre, email, password } = req.body;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const findUser = await userModel.find({ email });
 
-const profileUser = async (req, res) => {
-  try {
-    const { id } = req.user;
-    const userFound = await userModel.findById(id);
-    if (!userFound) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
+    if (!emailRegex.test(email)) {
+      return res
+        .status(400)
+        .json({ message: "El email proporcionado no es válido" });
     }
+
+    if (findUser.length > 0)
+      return res.status(201).json({ message: "Ese email ya está en uso" });
+    const hashPassword = await bcrypt.hash(password, 10);
+    const createUser = await userModel.create({
+      nombre,
+      email,
+      password: hashPassword,
+    });
+    const userSaved = await createUser.save();
+
+    const token = await createAcessToken({ id: userSaved.id });
+
+    res.cookie("token", token);
+
     res.status(200).json({
-      id: userFound.id,
-      nombre: userFound.nombre,
-      email: userFound.email,
-      isAdmin: userFound.isAdmin,
-      isBaneable: userFound.isBaneable,
+      id: userSaved.id,
+      nombre: userSaved.nombre,
+      email: userSaved.email,
+      isAdmin: userSaved.isAdmin,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -99,43 +118,51 @@ const logoutUser = async (req, res) => {
   return res.status(200).json({ message: "Cerraste sesión con éxito" });
 };
 
-const registerUser = async (req, res) => {
+const profileUser = async (req, res) => {
   try {
-    const { nombre, email, password, isAdmin } = req.body;
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const findUser = await userModel.find({ email });
-
-    if (!emailRegex.test(email)) {
-      return res
-        .status(400)
-        .json({ message: "El email proporcionado no es válido" });
+    const { id } = req.user;
+    const userFound = await userModel.findById(id);
+    if (!userFound) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
     }
-
-    if (findUser.length > 0)
-      return res.status(201).json({ message: "Ese email ya está en uso" });
-    const hashPassword = await bcrypt.hash(password, 10);
-    const createUser = await userModel.create({
-      nombre,
-      email,
-      password: hashPassword,
-      isAdmin,
-    });
-    const userSaved = await createUser.save();
-
-    const token = await createAcessToken({ id: userSaved.id });
-
-    res.cookie("token", token);
-
     res.status(200).json({
-      id: userSaved.id,
-      nombre: userSaved.nombre,
-      email: userSaved.email,
-      isAdmin: userSaved.isAdmin,
+      id: userFound.id,
+      nombre: userFound.nombre,
+      email: userFound.email,
+      isAdmin: userFound.isAdmin,
+      isBaneable: userFound.isBaneable,
     });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
+
+const historialComprasUser = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const Historial = await ComprasModel.find({
+      User: id,
+    }).populate("User");
+    res.status(200).json(Historial);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const productsUser = async (req, res) => {
+  const { id } = req.user;
+
+  const findProduct = await ProductsModel.find({
+    User: id,
+  }).populate("User");
+  if (!findProduct) {
+    return res.status(404).json("No hay productos");
+  }
+
+  res.status(200).json(findProduct);
+};
+
+// ADMIN
 
 const editUserByAdmin = async (req, res) => {
   try {
@@ -227,30 +254,6 @@ const editBorradoLogicoByAdmin = async (req, res) => {
   }
 };
 
-const historialComprasUser = async (req, res) => {
-  try {
-    const { id } = req.user;
-    const Historial = await ComprasModel.find({
-      User: id,
-    }).populate("User");
-    res.status(200).json(Historial);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-const productsUser = async (req, res) => {
-  const { id } = req.user;
-
-  const findProduct = await ProductsModel.find({
-    User: id,
-  }).populate("User");
-  if (!findProduct) {
-    return res.status(404).json("No hay productos");
-  }
-
-  res.status(200).json(findProduct);
-};
 module.exports = {
   registerUser,
   editUser,
