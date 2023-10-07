@@ -239,6 +239,18 @@ const historialComprasUser = async (req, res) => {
   }
 };
 
+const productsUser = async (req, res) => {
+  const { id } = req.user;
+
+  const findProduct = await ProductsModel.find({
+    User: id,
+  }).populate("User");
+  if (!findProduct) {
+    return res.status(404).json("No hay productos");
+  }
+
+  res.status(200).json(findProduct);
+};
 module.exports = {
   registerUser,
   editUser,
@@ -251,4 +263,5 @@ module.exports = {
   deleteProductByAdmin,
   editBorradoLogicoByAdmin,
   historialComprasUser,
+  productsUser,
 };

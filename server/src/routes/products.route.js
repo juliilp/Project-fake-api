@@ -12,7 +12,6 @@ const authRequired = require("../utils/authRequired");
 
 products.get("/all", getAllProducts);
 products.get("/:id", detailProducts);
-products.get("/forUser", authRequired, getProductsForUser);
 products.post("/create", authRequired, createProducts);
 products.put("/:id", authRequired, editProducts);
 products.delete("/:id", authRequired, deleteProducts);

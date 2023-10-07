@@ -7,7 +7,7 @@ const authRequired = (req, res, next) => {
     return res.status(401).json({ message: "No token, Autorización denegada" });
   }
 
-  jwt.verify(token, "token123", (err, user) => {
+  jwt.verify(token.token, "token123", (err, user) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ message: "Token inválido" });
