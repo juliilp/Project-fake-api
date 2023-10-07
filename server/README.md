@@ -1,7 +1,5 @@
 # README - Rutas de Express
 
-Este README proporciona una descripción general de las rutas definidas en tu aplicación Express. Las rutas son manejadas por controladores que realizan diversas acciones en función de las solicitudes recibidas.
-
 ## Contenido
 
 1. [Rutas de Usuarios](#rutas-de-usuarios)
@@ -10,6 +8,10 @@ Este README proporciona una descripción general de las rutas definidas en tu ap
 4. [Rutas para Desarollo](#rutas-para-desarrollo)
 
 ---
+
+## Variable de Entorno
+
+- MERCADOPAGO_TOKEN = 'Tu Token'
 
 ## Rutas de Usuarios
 
