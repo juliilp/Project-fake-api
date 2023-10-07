@@ -93,10 +93,10 @@ const editProducts = async (req, res) => {
 };
 
 const getProductsForUser = async (req, res) => {
-  console.log(req.user.id);
+  const userId = req.user._id;
   try {
     const Products = await ProductsModel.find({
-      User: req.user.id,
+      User: userId,
     }).populate("User");
     res.status(200).json(Products);
   } catch (error) {

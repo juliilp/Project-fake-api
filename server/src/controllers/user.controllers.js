@@ -3,7 +3,7 @@ const userModel = require("../models/User.model");
 const createAcessToken = require("../utils/createAcessToken");
 const bcrypt = require("bcrypt");
 const ProductsModel = require("../models/Products.model");
-
+const ComprasModel = require("../models/Compras.model");
 const editUser = async (req, res) => {
   const { id } = req.params;
   const { email, password, nombre } = req.body;
@@ -227,6 +227,18 @@ const editBorradoLogicoByAdmin = async (req, res) => {
   }
 };
 
+const historialComprasUser = async (req, res) => {
+  try {
+    const { id } = req.user;
+    const Historial = await ComprasModel.find({
+      User: id,
+    }).populate("User");
+    res.status(200).json(Historial);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   registerUser,
   editUser,
@@ -238,4 +250,5 @@ module.exports = {
   deleteUserByAdmin,
   deleteProductByAdmin,
   editBorradoLogicoByAdmin,
+  historialComprasUser,
 };

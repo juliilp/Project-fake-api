@@ -10,6 +10,7 @@ const {
   logoutUser,
   deleteProductByAdmin,
   editBorradoLogicoByAdmin,
+  historialComprasUser,
 } = require("../controllers/user.controllers");
 const authRequired = require("../utils/authRequired");
 
@@ -21,6 +22,7 @@ userRouter.post("/create", registerUser);
 userRouter.post("/login", loginUser);
 userRouter.get("/logout", logoutUser);
 userRouter.get("/profile", authRequired, profileUser);
+userRouter.get("/historialCompra", authRequired, historialComprasUser);
 
 /// ADMIN
 userRouter.put("/editUser/:id", authRequired, editUserByAdmin);
