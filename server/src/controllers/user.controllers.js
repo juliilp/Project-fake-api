@@ -4,7 +4,6 @@ const createAcessToken = require("../utils/createAcessToken");
 const bcrypt = require("bcrypt");
 const ProductsModel = require("../models/Products.model");
 const ComprasModel = require("../models/Compras.model");
-
 const allUser = async (req, res) => {
   const { limit, page } = req.query;
 
