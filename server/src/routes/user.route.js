@@ -22,7 +22,7 @@ const {
 const userRouter = Router();
 
 userRouter.get("/all", allUser);
-userRouter.put("/:id", editUser);
+userRouter.put("/:id", functionValidation(registerValidation), editUser);
 userRouter.post(
   "/create",
   functionValidation(registerValidation),
