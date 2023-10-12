@@ -21,7 +21,9 @@
     "jsonwebtoken": "^9.0.2",
     "mercadopago": "^1.5.17",
     "mongoose": "^7.5.3",
-    "mongoose-paginate-v2": "^1.7.4",
+    "mongoose-paginate-v2": "^1.7.4"
+  },
+  "devDependencies": {
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
   }
