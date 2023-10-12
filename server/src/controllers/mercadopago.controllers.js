@@ -12,11 +12,11 @@ const createOrder = async (req, res) => {
     const result = await mercadopago.preferences.create({
       items,
       back_urls: {
-        success: `http://localhost:3001/mercadopago/sucess`,
-        failure: `http://localhost:3001/mercadopago/failure`,
-        pending: `http://localhost:3001/mercadopago/pending`,
+        success: `https://fake-api-project-backend.onrender.com/mercadopago/sucess`,
+        failure: `https://fake-api-project-backend.onrender.com/mercadopago/failure`,
+        pending: `https://fake-api-project-backend.onrender.com/mercadopago/pending`,
       },
-      notification_url: `https://764d-2802-8011-3026-3a01-edd9-54f7-e7d8-18ca.ngrok.io/mercadopago/webhook?idUser=${id}`,
+      notification_url: `https://fake-api-project-backend.onrender.com/mercadopago/webhook?idUser=${id}`,
     });
     res.status(200).json(result.body.init_point);
   } catch (error) {
