@@ -14,13 +14,21 @@ const {
   productsUser,
 } = require("../controllers/user.controllers");
 const authRequired = require("../utils/authRequired");
-
+const functionValidation = require("../validations/functionValidation");
+const {
+  registerValidation,
+  loginValidation,
+} = require("../validations/userValidations");
 const userRouter = Router();
 
 userRouter.get("/all", allUser);
 userRouter.put("/:id", editUser);
-userRouter.post("/create", registerUser);
-userRouter.post("/login", loginUser);
+userRouter.post(
+  "/create",
+  functionValidation(registerValidation),
+  registerUser
+);
+userRouter.post("/login", functionValidation(loginValidation), loginUser);
 userRouter.get("/logout", logoutUser);
 userRouter.get("/profile", authRequired, profileUser);
 userRouter.get("/historialCompra", authRequired, historialComprasUser);
