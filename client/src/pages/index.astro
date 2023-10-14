@@ -1,21 +1,24 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import axios from 'axios'
-async function infoData(){
-	const result = await axios("http://localhost:3001/products/all")
-	const data = result.data
-	return data
-}
-const {productos}= await infoData()
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-		{
-			productos.map((p) => {
-				return <h2 class="text-white" >{p.title}</h2>
-			})
-		}
-		<h2>hola</h2>
+<Layout title="Home Page" >
+	<main class="w-full h-screen " >
+	
+        <article>
+            <h1>Introducción</h1>
+            <p>Fake-store-api es un backend que puede ser usado para múltiples proyectos, contiene productos, autenticación, mercadopago y usuarios. Usando este repositorio puedes armar tu propio ecommerce ❤</p>
+            <span>Esta API incluye</span>
+            <ul>
+                <li>✅ Paginado de usuarios y productos</li>
+                <li>✅ Autenticación con JWT</li>
+                <li>✅ Filtrar productos mediante consultas por su título</li>
+                <li>✅ CRUD de usuarios y productos</li>
+                <li>✅ Mercadopago</li>
+                <li>✅ Siendo administrador puedes hacer administrador a otro usuario, banear o eliminar su cuenta</li>
+                <li>✅ La creación de productos solo puede ser realizada por un usuario, así como también te indica qué usuario creó el producto</li>
+                <li>✅ Rutas protegidas y validadas</li>
+            </ul>
+        </article>
+    </main>
 </Layout>
-
-
