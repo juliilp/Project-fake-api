@@ -15,7 +15,7 @@ const allUser = async (req, res) => {
     const allUser = await userModel.paginate({}, options);
     res.status(200).json({
       cantidad: allUser.totalDocs,
-      productos: allUser.docs,
+      users: allUser.docs,
       totalPages: allUser.totalPages,
       currentPage: allUser.page,
     });
