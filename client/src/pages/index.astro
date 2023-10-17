@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import ImageMain from '../../public/imagen-main.png'
 ---
 
 <Layout title="Home Page" >
-	<main class="w-full h-screen " >
+	<main class="w-full h-screen mt-24 flex flex-col px-6  md:grid grid-cols-2 " >
 	
-        <article>
+        <!-- <article>
             <h1>Introducción</h1>
             <p>Fake-store-api es un backend que puede ser usado para múltiples proyectos, contiene productos, autenticación, mercadopago y usuarios. Usando este repositorio puedes armar tu propio ecommerce ❤</p>
             <span>Esta API incluye</span>
@@ -19,6 +21,13 @@ import Layout from "../layouts/Layout.astro";
                 <li>✅ La creación de productos solo puede ser realizada por un usuario, así como también te indica qué usuario creó el producto</li>
                 <li>✅ Rutas protegidas y validadas</li>
             </ul>
-        </article>
+        </article> -->
+    
+       <article class="flex flex-col gap-8 mb-8" >
+        <h1 class="text-4xl text-center" >Fake Store Api</h1>
+        <p class="w-full max-w-[500px] text-xl" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit quidem iusto omnis ducimus nobis quia nesciunt deserunt illum fuga a ipsam quis, veniam quasi at eveniet deleniti commodi! Nisi.</p>
+       </article>
+
+       <Image src={ImageMain} alt="imagen-main" class="w-full h-[250px] max-w-[500px]" />
     </main>
 </Layout>
