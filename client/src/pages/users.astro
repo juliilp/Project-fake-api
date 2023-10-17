@@ -1,9 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
+import arrayUsers from '../helpers/arrayUsers'
+import ComponentUser from "../components/componentUser.astro";
 ---
 
 <Layout title="Usuarios" >
-
-    Soy pagina users
+    <h1 class="font-bold text-[52px] font-sans" >Users</h1>
+    {
+        arrayUsers.map((user,key) => {
+            return <ComponentUser
+            key={key}
+            titulo="Todos los usuarios"
+            descripcion="Podes acceder a todos los usuarios y con su respectivas queryes de limit y page"
+            request="https://fake-api-project-backend.onrender.com/user/all"
+            response={JSON.stringify(user)}
+            />
+        })
+    }
 </Layout>

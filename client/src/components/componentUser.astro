@@ -1,0 +1,17 @@
+---
+const {request, response, titulo, descripcion} = Astro.props
+---
+
+
+<section class="flex flex-col gap-4" >
+    <h2>{titulo}</h2>
+    <p>{descripcion}</p>
+    <article class="flex flex-col gap-2" >
+        <span>Request:</span>
+        <span class="bg-[#0D1016] text-white" >{request}</span>
+    </article>
+   <article class="flex flex-col gap-2" >
+    <span>Response</span>
+    <span class="bg-[#0D1016] flex flex-col" >{response}</span>
+   </article>
+</section>
