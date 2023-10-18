@@ -1,0 +1,12 @@
+---
+import CardUser from "./CardUser.astro";
+import ImagenUser from '../../public/imagen-user.png'
+import ImagenProducto from '../../public/imagen-producto.png'
+import ImagenMercadoPago from '../../public/imagen-mercadopago.png'
+---
+
+<article class="flex w-full flex-wrap  justify-between" > 
+    <CardUser imagen={ImagenUser} texto="https://fake-api-project-backend.onrender.com/user" titulo="Usuarios" />
+    <CardUser imagen={ImagenProducto} texto="https://fake-api-project-backend.onrender.com/productos" titulo="Productos" />
+    <CardUser imagen={ImagenMercadoPago} texto="https://fake-api-project-backend.onrender.com/mercadopago" titulo="Mercado pago" />
+</article>

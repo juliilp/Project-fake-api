@@ -1,0 +1,10 @@
+---
+import { Image } from "astro:assets";
+const {imagen,titulo,texto} = Astro.props
+---
+
+<article class="w-full h-full flex flex-col items-center justify-center max-w-[450px]" >
+    <h2 class="text-xl">{titulo}</h2>
+    <p class="bg-[#0C1017] p-2 rounded-lg text-xs">{texto}</p>
+    <Image src={imagen} alt="imagen" class="w-[150px] h-[200px]" />
+</article>
