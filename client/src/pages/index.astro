@@ -1,33 +1,34 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import ImageMain from '../../public/imagen-main.png'
+import ContainerCardUser from "../components/ContainerCardUser.astro";
 ---
 
 <Layout title="Home Page" >
-	<main class="w-full h-screen mt-24 flex flex-col px-6  md:grid grid-cols-2 " >
-	
-        <!-- <article>
-            <h1>Introducción</h1>
-            <p>Fake-store-api es un backend que puede ser usado para múltiples proyectos, contiene productos, autenticación, mercadopago y usuarios. Usando este repositorio puedes armar tu propio ecommerce ❤</p>
-            <span>Esta API incluye</span>
-            <ul>
-                <li>✅ Paginado de usuarios y productos</li>
-                <li>✅ Autenticación con JWT</li>
-                <li>✅ Filtrar productos mediante consultas por su título</li>
-                <li>✅ CRUD de usuarios y productos</li>
-                <li>✅ Mercadopago</li>
-                <li>✅ Siendo administrador puedes hacer administrador a otro usuario, banear o eliminar su cuenta</li>
-                <li>✅ La creación de productos solo puede ser realizada por un usuario, así como también te indica qué usuario creó el producto</li>
-                <li>✅ Rutas protegidas y validadas</li>
-            </ul>
-        </article> -->
-    
-       <article class="flex flex-col gap-8 mb-8" >
-        <h1 class="text-4xl text-center" >Fake Store Api</h1>
-        <p class="w-full max-w-[500px] text-xl" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit quidem iusto omnis ducimus nobis quia nesciunt deserunt illum fuga a ipsam quis, veniam quasi at eveniet deleniti commodi! Nisi.</p>
-       </article>
-
-       <Image src={ImageMain} alt="imagen-main" class="w-full h-[250px] max-w-[500px]" />
-    </main>
+	<main class="w-full h-[calc(100vh-7rem)] px-6 flex flex-col">
+        <section class="w-full flex flex-col gap-8 md:gap-0 md:grid grid-cols-3 md:py-16 ">
+          <article class="flex flex-col gap-8 items-center justify-center col-span-2 ">
+            <h1 class="text-4xl text-center">Fake Store Api</h1>
+              <p class="max-w-[600px] text-sm" >  Fake Store API es una solución de backend versátil diseñada para impulsar una amplia gama de proyectos en línea. Con una amplia variedad de características sólidas, este repositorio proporciona una base confiable para crear tu propio ecommerce o aplicación de comercio electrónico de manera eficiente. <br/>
+                Este backend incluye funciones esenciales, como la gestión de productos, autenticación segura y la integración con MercadoPago. La gestión de productos te permite cargar, editar y organizar tus catálogos de productos, facilitando la exposición de tus productos en línea.
+                Además, la autenticación segura mediante JWT garantiza que los datos de tus usuarios estén protegidos, brindando confianza tanto a los usuarios como a los administradores. 🤎</p>
+          </article>
+          
+          <ul class="flex flex-col gap-2 md:justify-center col-span-1 text-sm md:mt-8 list-disc" >
+            <li>✅ Paginado de usuarios y productos</li>
+            <li>✅ Gestión de Productos y Usuarios</li>
+            <li>✅ Administracion de Usuarios</li>
+            <li>✅ Autenticación segura con JWT</li>
+            <li>✅ Filtrar productos con consultas por su título</li>
+            <li>✅ Integracion con Mercadopago</li>
+            <li>✅ Rutas protegidas y validadas</li>
+        </ul>
+        </section>
+      
+        <section class="flex h-full  flex-wrap gap-6 items-center ">
+          <ContainerCardUser />
+        </section>
+      </main>
+      
 </Layout>
+
+
