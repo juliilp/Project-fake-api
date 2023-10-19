@@ -1,17 +1,14 @@
 ---
-const {request, response, titulo, descripcion} = Astro.props
+const { request, response, titulo, descripcion } = Astro.props;
+const parsedResponse = JSON.parse(response);
+const formattedResponse = JSON.stringify(parsedResponse, null, 2);
 ---
 
-
-<section class="flex flex-col gap-4" >
-    <h2>{titulo}</h2>
-    <p>{descripcion}</p>
-    <article class="flex flex-col gap-2" >
-        <span>Request:</span>
-        <span class="bg-[#0D1016] text-white" >{request}</span>
+<section class="flex flex-col gap-4 ">
+    <h2 class="text-[#A3CBD3]" >{titulo}</h2>
+    <p class="text-[#A3CBD3]" >{descripcion}</p>
+    <article class="flex flex-col ">
+        <span class="bg-[#55457a] text-white w-max p-2 rounded-tr-lg rounded-tl-lg">{request}</span>
+        <pre class="bg-[#0D1016] text-white p-6 w-max rounded-br-lg rounded-bl-lg rounded-tr-lg">{formattedResponse}</pre>
     </article>
-   <article class="flex flex-col gap-2" >
-    <span>Response</span>
-    <span class="bg-[#0D1016] flex flex-col" >{response}</span>
-   </article>
 </section>
