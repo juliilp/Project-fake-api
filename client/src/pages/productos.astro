@@ -1,9 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-
+import arrayProductos from '../helpers/arrayProductos'
+import ComponenteObjeto from "../components/componenteObjeto.astro";
 ---
 
-<Layout title="Productos" >
-    Soy pagina productos
+<Layout title="Usuarios" >
+    <h1 class="font-bold text-[52px] font-sans" >Productos</h1>
+    {
+        arrayProductos.map((user,key) => {
+            return <ComponenteObjeto
+            key={key}
+            titulo={user.titulo}
+            descripcion={user.descripcion}
+            request={user.request}
+            response={JSON.stringify(user.response)}
+            />
+        })
+    }
 </Layout>
