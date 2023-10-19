@@ -10,10 +10,10 @@ import ComponentUser from "../components/componentUser.astro";
         arrayUsers.map((user,key) => {
             return <ComponentUser
             key={key}
-            titulo="Todos los usuarios"
-            descripcion="Podes acceder a todos los usuarios y con su respectivas queryes de limit y page"
-            request="https://fake-api-project-backend.onrender.com/user/all"
-            response={JSON.stringify(user)}
+            titulo={user.titulo}
+            descripcion={user.descripcion}
+            request={user.request}
+            response={JSON.stringify(user.response)}
             />
         })
     }
