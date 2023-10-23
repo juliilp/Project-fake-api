@@ -19,11 +19,6 @@ products.post(
   functionValidation(ProductValidation),
   createProducts
 );
-products.put(
-  "/:id",
-  authRequired,
-  functionValidation(ProductValidation),
-  editProducts
-);
+products.put("/:id", authRequired, editProducts);
 products.delete("/:id", authRequired, deleteProducts);
 module.exports = products;
