@@ -77,14 +77,18 @@ const editProducts = async (req, res) => {
     if (!findProduct) {
       return res.status(404).json({ error: "Producto no encontrado" });
     }
-    const productoActualizado = await ProductsModel.findByIdAndUpdate(id, {
-      title,
-      price,
-      description,
-      category,
-      image,
-      quantity,
-    });
+    const productoActualizado = await ProductsModel.findByIdAndUpdate(
+      id,
+      {
+        title,
+        price,
+        description,
+        category,
+        image,
+        quantity,
+      },
+      { new: true }
+    );
 
     res.status(200).json(productoActualizado);
   } catch (error) {
