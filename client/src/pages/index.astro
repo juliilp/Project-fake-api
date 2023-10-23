@@ -4,7 +4,7 @@ import ContainerCardUser from "../components/ContainerCardUser.astro";
 ---
 
 <Layout title="Home Page" >
-	<main class="w-full h-[calc(100vh-7rem)] px-6 flex flex-col">
+	<main class="w-full h-[calc(100vh-7rem)] px-6 flex flex-col gap-8 ">
         <section class="w-full flex flex-col gap-8 md:gap-0 md:grid grid-cols-3 md:py-16 ">
           <article class="flex flex-col gap-8 items-center justify-center col-span-2 ">
             <h1 class="text-4xl text-center ">Fake Store Api</h1>
@@ -13,15 +13,18 @@ import ContainerCardUser from "../components/ContainerCardUser.astro";
                 Además, la autenticación segura mediante JWT garantiza que los datos de tus usuarios estén protegidos, brindando confianza tanto a los usuarios como a los administradores. 🤎</p>
           </article>
           
-          <ul class="flex flex-col gap-2 md:justify-center col-span-1 text-sm md:mt-8 list-disc" >
-            <li>✅ Paginado de usuarios y productos</li>
-            <li>✅ Gestión de Productos y Usuarios</li>
-            <li>✅ Administracion de Usuarios</li>
-            <li>✅ Autenticación segura con JWT</li>
-            <li>✅ Filtrar productos con consultas por su título</li>
-            <li>✅ Integracion con Mercadopago</li>
-            <li>✅ Rutas protegidas y validadas</li>
-        </ul>
+          <article class="flex justify-center w-full" >
+
+            <ul class="flex flex-col gap-2 md:justify-center col-span-1 text-sm md:mt-8 list-disc md:list-none lg:list-disc " >
+              <li>✅ Paginado de usuarios y productos</li>
+              <li>✅ Gestión de Productos y Usuarios</li>
+              <li>✅ Administracion de Usuarios</li>
+              <li>✅ Autenticación segura con JWT</li>
+              <li>✅ Filtrar productos con consultas por su título</li>
+              <li>✅ Integracion con Mercadopago</li>
+              <li>✅ Rutas protegidas y validadas</li>
+          </ul>
+          </article>
         </section>
       
         <section class="flex h-full  flex-wrap gap-6 items-center ">
