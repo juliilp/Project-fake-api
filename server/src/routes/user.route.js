@@ -34,11 +34,15 @@ userRouter.get("/profile", authRequired, profileUser);
 userRouter.get("/historialCompra", authRequired, historialComprasUser);
 userRouter.get("/productsUser", authRequired, productsUser);
 /// ADMIN
-userRouter.put("/editUser/:id", authRequired, editUserByAdmin);
-userRouter.delete("/deleteUser/:id", authRequired, deleteUserByAdmin);
-userRouter.delete("/deleteProducto/:id", authRequired, deleteProductByAdmin);
+userRouter.put("/admin/editUser/:id", authRequired, editUserByAdmin);
+userRouter.delete("/admin/deleteUser/:id", authRequired, deleteUserByAdmin);
+userRouter.delete(
+  "/admin/deleteProducto/:id",
+  authRequired,
+  deleteProductByAdmin
+);
 userRouter.put(
-  "/editBorradoLogico/:id",
+  "/admin/editBorradoLogico/:id",
   authRequired,
   editBorradoLogicoByAdmin
 );
