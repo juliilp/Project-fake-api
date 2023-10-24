@@ -5,16 +5,18 @@ import ComponenteObjeto from "../components/componenteObjeto.astro";
 ---
 
 <Layout title="Usuarios" >
-    <h1 class="font-bold text-[52px] font-sans" >Productos</h1>
-    {
-        arrayProductos.map((user,key) => {
-            return <ComponenteObjeto
-            key={key}
-            titulo={user.titulo}
-            descripcion={user.descripcion}
-            request={user.request}
-            response={JSON.stringify(user.response)}
-            />
-        })
-    }
+    <main class="flex flex-col gap-8 justify-center items-center" >
+        <h1 class="font-bold text-4xl sm:text-5xl font-sans" >Productos</h1>
+        {
+            arrayProductos.map((user,key) => {
+                return <ComponenteObjeto
+                key={key}
+                titulo={user.titulo}
+                descripcion={user.descripcion}
+                request={user.request}
+                response={JSON.stringify(user.response)}
+                />
+            })
+        }
+    </main>
 </Layout>

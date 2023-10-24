@@ -5,7 +5,8 @@ import ComponenteObjeto from "../components/componenteObjeto.astro";
 ---
 
 <Layout title="Usuarios" >
-    <h1 class="font-bold text-[52px] font-sans" >Mercadopago</h1>
+<main class="flex flex-col gap-8 justify-center items-center px-4  " >
+    <h1 class="font-bold text-4xl sm:text-5xl font-sans" >Mercadopago</h1>
     {
         arrayMercadoPago.map((user,key) => {
             return <ComponenteObjeto
@@ -17,4 +18,5 @@ import ComponenteObjeto from "../components/componenteObjeto.astro";
             />
         })
     }
+</main>
 </Layout>
